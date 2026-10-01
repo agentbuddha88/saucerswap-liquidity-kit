@@ -1,0 +1,8 @@
+{
+  "hedera-testnet": {
+    "routerV1": "0x0000000000000000000000000000000000004b40",
+    "factoryV1": "0x00000000000000000000000000000000000026e7",
+    "whbarToken": "0x0000000000000000000000000000000000003ad2",
+    "notes": "SaucerSwap V1 addresses on Hedera testnet (from hedera-dev/template-hedera-lz-app). LiquidityHelper is deployed separately via hardhat-deploy."
+  }
+}

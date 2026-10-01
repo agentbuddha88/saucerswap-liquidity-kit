@@ -1,0 +1,52 @@
+{
+  "name": "saucerswap-liquidity-kit",
+  "description": "Add and remove SaucerSwap V1 liquidity for HTS token pairs on Hedera. Next.js UI + Hardhat LiquidityHelper wrapping the SaucerSwap router.",
+  "create-scaffold-hbar": {
+    "capabilities": {
+      "frontend": ["nextjs-app"],
+      "solidityFramework": ["hardhat"],
+      "packageManager": ["npm", "yarn"]
+    },
+    "defaults": {
+      "frontend": "nextjs-app",
+      "solidityFramework": "hardhat",
+      "packageManager": "npm"
+    },
+    "outro": {
+      "sections": [
+        {
+          "title": "Next steps",
+          "steps": [
+            {
+              "label": "Install dependencies",
+              "command": "npm install --legacy-peer-deps"
+            },
+            {
+              "label": "Generate or import a deployer account",
+              "command": "{run:framework:account:generate}"
+            },
+            {
+              "label": "Fund the deployer (Hedera testnet faucet)",
+              "url": "https://portal.hedera.com/faucet"
+            },
+            {
+              "label": "Compile and run LiquidityHelper unit tests",
+              "command": "{run:hardhat:test}"
+            },
+            {
+              "label": "Deploy LiquidityHelper (testnet router defaults from env/addresses.testnet.json)",
+              "command": "{run:framework:deploy} --network hederaTestnet --tags LiquidityHelper"
+            },
+            {
+              "label": "Start the frontend and open /liquidity",
+              "command": "{run:next:dev}"
+            },
+            {
+              "text": "See README.md for SaucerSwap V1 addresses, HTS association notes, and risk warnings. Do not use amount mins of 0 outside demos."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
