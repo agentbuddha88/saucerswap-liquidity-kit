@@ -46,14 +46,23 @@ const config: HardhatUserConfig = {
       default: 0,
     },
   },
+  mocha: {
+    timeout: 120_000,
+  },
   networks: {
+    // Fork only when HEDERA_FORKING=true (npm run hardhat:test / hardhat:chain).
+    // Unit tests that use mocks (LiquidityHelper) run fine without a live fork.
     hardhat: {
-      forking: {
-        url: hederaRpcUrl,
-        // @ts-expect-error - custom property for hedera-forking plugin
-        chainId: 296,
-        workerPort: 10001,
-      },
+      ...(process.env.HEDERA_FORKING === "true"
+        ? {
+            forking: {
+              url: hederaRpcUrl,
+              // @ts-expect-error - custom property for hedera-forking plugin
+              chainId: 296,
+              workerPort: 10001,
+            },
+          }
+        : {}),
     },
     hederaTestnet: {
       url: "https://testnet.hashio.io/api",

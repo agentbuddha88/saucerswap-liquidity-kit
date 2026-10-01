@@ -96,6 +96,23 @@ env/addresses.testnet.json
 - Hedera HTS tokens must be **associated** to your account before transfers succeed.
 - Router addresses above are testnet; confirm [SaucerSwap docs](https://docs.saucerswap.finance/) before mainnet use.
 
+
+## Verified Hedera testnet deploy
+
+| Item | Value |
+| --- | --- |
+| `LiquidityHelper` | `0xdC4eC366B0F16407bdC27f83212B729A0cB45F7B` (`0.0.10805058`) |
+| Deploy tx (EVM) | `0xf3ae714dfd8e18bdb90cc2bc161a672b7503cee2068d6f39499ce5fcef855922` |
+| Hedera transaction ID | `0.0.7314364-1790842935-301183220` |
+| Deployer | `0x2d52e16130468fa2a425263137D8746610AD9FA3` (`0.0.10805053`) |
+
+Mirror-node proof (bounty-eligible):
+
+- Contract result: https://testnet.mirrornode.hedera.com/api/v1/contracts/results/0xf3ae714dfd8e18bdb90cc2bc161a672b7503cee2068d6f39499ce5fcef855922
+- Contract: https://testnet.mirrornode.hedera.com/api/v1/contracts/0.0.10805058
+
+HashScan (browser): https://hashscan.io/testnet/transaction/0.0.7314364-1790842935-301183220
+
 ## Links
 
 - [Scaffold HBAR docs](https://docs.hedera.com/solutions/tools/scaffold-hbar/index)

@@ -3,6 +3,8 @@ import { ethers } from "hardhat";
 import type { Contract, Signer } from "ethers";
 
 describe("LiquidityHelper", function () {
+  this.timeout(120_000);
+
   async function deployFixture() {
     const [owner, alice] = await ethers.getSigners();
 
@@ -195,17 +197,13 @@ describe("LiquidityHelper", function () {
       const lpBal = await pair.balanceOf(alice.address);
       await pair.connect(alice).approve(helperAddr, lpBal);
 
-      const ethBefore = await ethers.provider.getBalance(alice.address);
-      const tx = await helper
-        .connect(alice)
-        .removeLiquidityHBAR(await tokenA.getAddress(), lpBal, 0, 0, deadline);
-      const receipt = await tx.wait();
-      const gasUsed = receipt!.gasUsed * receipt!.gasPrice;
+      const tokenBefore = await tokenA.balanceOf(alice.address);
+      await expect(
+        helper.connect(alice).removeLiquidityHBAR(await tokenA.getAddress(), lpBal, 0, 0, deadline),
+      ).to.changeEtherBalance(alice, lpBal);
 
-      const ethAfter = await ethers.provider.getBalance(alice.address);
-      // alice receives `lpBal` wei of HBAR back, minus gas
-      expect(ethAfter + gasUsed - ethBefore).to.equal(lpBal);
       expect(await pair.balanceOf(alice.address)).to.equal(0n);
+      expect(await tokenA.balanceOf(alice.address)).to.equal(tokenBefore + lpBal);
     });
   });
 });
